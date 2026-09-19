@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DealNest - Amazon Deals & Gadgets</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#ff9900;
+}
+
+.search{
+    display:flex;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    max-width:400px;
+    width:100%;
+}
+
+.search input{
+    border:0;
+    outline:0;
+    padding:12px 16px;
+    width:100%;
+    font-size:15px;
+}
+
+.search button{
+    border:0;
+    background:#ff9900;
+    padding:0 18px;
+    cursor:pointer;
+}
+
+.hero{
+    text-align:center;
+    padding:65px 20px;
+    background:linear-gradient(135deg,#111827,#26354d);
+    color:white;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    color:#d1d5db;
+    margin-bottom:25px;
+}
+
+.hero button{
+    background:#ff9900;
+    border:0;
+    padding:14px 25px;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.categories{
+    padding:25px 6%;
+    text-align:center;
+}
+
+.categories button{
+    margin:6px;
+    padding:10px 18px;
+    border:1px solid #ddd;
+    background:white;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.categories button:hover{
+    background:#ff9900;
+}
+
+.products{
+    padding:10px 6% 50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.product-img{
+    height:150px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:75px;
+    background:#f1f5f9;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.category{
+    color:#6b7280;
+    font-size:13px;
+}
+
+.price{
+    color:#e65100;
+    font-size:22px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.card a{
+    display:block;
+    text-align:center;
+    background:#ff9900;
+    color:#111;
+    text-decoration:none;
+    padding:11px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.no-result{
+    text-align:center;
+    grid-column:1/-1;
+    padding:30px;
+}
+
+footer{
+    background:#111827;
+    color:#d1d5db;
+    text-align:center;
+    padding:30px 15px;
+}
+
+footer strong{
+    color:white;
+}
+
+@media(max-width:600px){
+    header{
+        flex-direction:column;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+    Deal<span>Nest</span>
+</div>
+
+<div class="search">
+    <input id="searchBox" type="text" placeholder="Search deals & gadgets...">
+    <button onclick="searchProducts()">🔍</button>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Find Smart Deals Everyday 🔥</h1>
+
+<p>Amazon deals, gadgets & useful products — all in one place.</p>
+
+<button onclick="scrollToDeals()">Explore Deals</button>
+
+</section>
+
+
+<section class="categories">
+
+<h2>Categories</h2>
+
+<button onclick="filterProducts('all')">All Deals</button>
+<button onclick="filterProducts('electronics')">Electronics</button>
+<button onclick="filterProducts('audio')">Audio</button>
+<button onclick="filterProducts('gaming')">Gaming</button>
+<button onclick="filterProducts('computer')">Computer</button>
+<button onclick="filterProducts('home')">Home</button>
+
+</section>
+
+
+<section class="products" id="products">
+
+
+<div class="card" data-category="electronics">
+
+<div class="product-img">📱</div>
+
+<h3>Smartphone Deals</h3>
+
+<div class="category">Electronics</div>
+
+<div class="price">₹9,999+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+<div class="card" data-category="audio">
+
+<div class="product-img">🎧</div>
+
+<h3>Wireless Earbuds</h3>
+
+<div class="category">Audio</div>
+
+<div class="price">₹799+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+<div class="card" data-category="gaming">
+
+<div class="product-img">🎮</div>
+
+<h3>Gaming Accessories</h3>
+
+<div class="category">Gaming</div>
+
+<div class="price">₹499+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+<div class="card" data-category="computer">
+
+<div class="product-img">⌨️</div>
+
+<h3>Computer Accessories</h3>
+
+<div class="category">Computer</div>
+
+<div class="price">₹299+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+<div class="card" data-category="electronics">
+
+<div class="product-img">⌚</div>
+
+<h3>Smart Watches</h3>
+
+<div class="category">Electronics</div>
+
+<div class="price">₹999+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+<div class="card" data-category="home">
+
+<div class="product-img">🏠</div>
+
+<h3>Useful Home Products</h3>
+
+<div class="category">Home</div>
+
+<div class="price">₹199+</div>
+
+<a href="https://www.amazon.in/" target="_blank">
+View on Amazon →
+</a>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p><strong>DealNest</strong> — Smart Deals & Gadgets</p>
+
+<p style="margin-top:10px;font-size:13px;">
+As an Amazon Associate, we may earn from qualifying purchases.
+</p>
+
+</footer>
+
+
+<script>
+
+function scrollToDeals(){
+    document.getElementById("products").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function filterProducts(category){
+
+    const cards=document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+
+        if(category==="all" ||
+           card.dataset.category===category){
+
+            card.style.display="block";
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
+    });
+
+    scrollToDeals();
+}
+
+
+function searchProducts(){
+
+    const search=
+        document.getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+    const cards=document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+
+        const text=card.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            card.style.display="block";
+        }else{
+            card.style.display="none";
+        }
+
+    });
+
+    scrollToDeals();
+}
+
+</script>
+
+</body>
+</html>

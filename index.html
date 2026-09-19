@@ -70,6 +70,47 @@
       font-size: 16px;
     }
 
+    /* CATEGORIES */
+    .categories {
+      padding: 25px 10px;
+      background: white;
+      text-align: center;
+    }
+
+    .categories h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .category-container {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 5px;
+      justify-content: center;
+    }
+
+    .category-container button {
+      min-width: 105px;
+      padding: 15px 8px;
+      border: none;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .category-container button:active {
+      transform: scale(0.94);
+    }
+
+    .category-container button:hover {
+      background: #fff3e8;
+    }
+
     /* PRODUCTS */
     .shop-section {
       padding: 30px 15px;
@@ -150,6 +191,15 @@
       background: #e85d00;
     }
 
+    /* NO PRODUCTS */
+    #noProducts {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      font-size: 18px;
+    }
+
     /* FOOTER */
     footer {
       margin-top: 30px;
@@ -161,12 +211,17 @@
 
     /* MOBILE */
     @media (max-width: 600px) {
+
       header h1 {
         font-size: 25px;
       }
 
       .hero h2 {
         font-size: 23px;
+      }
+
+      .category-container {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -196,15 +251,57 @@
     <p>Save more. Shop smarter.</p>
   </section>
 
+  <!-- CATEGORIES -->
+  <section class="categories">
+
+    <h2>🛍️ Shop by Category</h2>
+
+    <div class="category-container">
+
+      <button onclick="filterCategory('all')">
+        🛒<br>
+        All
+      </button>
+
+      <button onclick="filterCategory('electronics')">
+        📱<br>
+        Electronics
+      </button>
+
+      <button onclick="filterCategory('headphones')">
+        🎧<br>
+        Headphones
+      </button>
+
+      <button onclick="filterCategory('fashion')">
+        👕<br>
+        Fashion
+      </button>
+
+      <button onclick="filterCategory('home')">
+        🏠<br>
+        Home
+      </button>
+
+      <button onclick="filterCategory('accessories')">
+        ⌚<br>
+        Accessories
+      </button>
+
+    </div>
+
+  </section>
+
   <!-- PRODUCTS -->
   <section class="shop-section">
 
-    <h2>🛒 Trending Products</h2>
+    <h2 id="sectionTitle">🛒 Trending Products</h2>
 
     <div class="products" id="productList">
 
       <!-- PRODUCT 1 -->
-      <div class="product-card">
+      <div class="product-card" data-category="headphones">
+
         <div class="discount">30% OFF</div>
 
         <div class="product-image">🎧</div>
@@ -222,10 +319,13 @@
           class="shop-btn">
           Shop Now 🛒
         </a>
+
       </div>
 
+
       <!-- PRODUCT 2 -->
-      <div class="product-card">
+      <div class="product-card" data-category="accessories">
+
         <div class="discount">25% OFF</div>
 
         <div class="product-image">⌚</div>
@@ -243,10 +343,13 @@
           class="shop-btn">
           Shop Now 🛒
         </a>
+
       </div>
 
+
       <!-- PRODUCT 3 -->
-      <div class="product-card">
+      <div class="product-card" data-category="electronics">
+
         <div class="discount">20% OFF</div>
 
         <div class="product-image">🎮</div>
@@ -264,11 +367,17 @@
           class="shop-btn">
           Shop Now 🛒
         </a>
+
       </div>
 
     </div>
 
+    <div id="noProducts">
+      😔 No products available in this category yet.
+    </div>
+
   </section>
+
 
   <!-- FOOTER -->
   <footer>
@@ -276,104 +385,119 @@
     <p>Best Deals • Smart Shopping</p>
   </footer>
 
-  <!-- SEARCH SCRIPT -->
-  <script>
-    function searchProducts() {
 
-      let input =
-        document.getElementById("searchInput").value.toLowerCase();
+  <!-- JAVASCRIPT -->
+  <script>
+
+    let currentCategory = "all";
+
+
+    /* CATEGORY FILTER */
+    function filterCategory(category) {
+
+      currentCategory = category;
 
       let cards =
         document.querySelectorAll(".product-card");
+
+      let visibleCount = 0;
+
+      cards.forEach(function(card) {
+
+        let cardCategory =
+          card.getAttribute("data-category");
+
+        if (
+          category === "all" ||
+          cardCategory === category
+        ) {
+
+          card.style.display = "block";
+          visibleCount++;
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+      if (category === "all") {
+        document.getElementById("sectionTitle").innerText =
+          "🛒 Trending Products";
+      } else {
+        document.getElementById("sectionTitle").innerText =
+          "🛍️ " + category.charAt(0).toUpperCase() + category.slice(1);
+      }
+
+      if (visibleCount === 0) {
+        document.getElementById("noProducts").style.display =
+          "block";
+      } else {
+        document.getElementById("noProducts").style.display =
+          "none";
+      }
+
+    }
+
+
+    /* SEARCH */
+    function searchProducts() {
+
+      let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+      let cards =
+        document.querySelectorAll(".product-card");
+
+      let visibleCount = 0;
 
       cards.forEach(function(card) {
 
         let name =
           card.innerText.toLowerCase();
 
-        if (name.includes(input)) {
+        let category =
+          card.getAttribute("data-category");
+
+        let categoryMatch =
+          currentCategory === "all" ||
+          category === currentCategory;
+
+        let searchMatch =
+          name.includes(input);
+
+        if (categoryMatch && searchMatch) {
+
           card.style.display = "block";
+          visibleCount++;
+
         } else {
+
           card.style.display = "none";
+
         }
 
       });
+
+      if (visibleCount === 0) {
+
+        document.getElementById("noProducts").style.display =
+          "block";
+
+      } else {
+
+        document.getElementById("noProducts").style.display =
+          "none";
+
+      }
+
     }
+
   </script>
-  <!-- CATEGORIES SECTION -->
-<section class="categories">
-  <h2>🛍️ Shop by Category</h2>
 
-  <div class="category-container">
-
-    <button onclick="showCategory('electronics')">
-      📱<br>
-      Electronics
-    </button>
-
-    <button onclick="showCategory('headphones')">
-      🎧<br>
-      Headphones
-    </button>
-
-    <button onclick="showCategory('fashion')">
-      👕<br>
-      Fashion
-    </button>
-
-    <button onclick="showCategory('home')">
-      🏠<br>
-      Home
-    </button>
-
-    <button onclick="showCategory('accessories')">
-      ⌚<br>
-      Accessories
-    </button>
-
-  </div>
-</section>
-
-<style>
-.categories {
-  text-align: center;
-  padding: 25px 10px;
-}
-
-.categories h2 {
-  font-size: 24px;
-  margin-bottom: 18px;
-}
-
-.category-container {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 5px;
-}
-
-.category-container button {
-  min-width: 105px;
-  padding: 15px 8px;
-  border: none;
-  border-radius: 15px;
-  background: white;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.category-container button:active {
-  transform: scale(0.94);
-}
-</style>
-
-<script>
-function showCategory(category) {
-  alert("You selected: " + category);
-}
-</script>
 </body>
-    </html>
+</html>

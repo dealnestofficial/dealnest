@@ -300,6 +300,80 @@
       });
     }
   </script>
+  <!-- CATEGORIES SECTION -->
+<section class="categories">
+  <h2>🛍️ Shop by Category</h2>
 
+  <div class="category-container">
+
+    <button onclick="showCategory('electronics')">
+      📱<br>
+      Electronics
+    </button>
+
+    <button onclick="showCategory('headphones')">
+      🎧<br>
+      Headphones
+    </button>
+
+    <button onclick="showCategory('fashion')">
+      👕<br>
+      Fashion
+    </button>
+
+    <button onclick="showCategory('home')">
+      🏠<br>
+      Home
+    </button>
+
+    <button onclick="showCategory('accessories')">
+      ⌚<br>
+      Accessories
+    </button>
+
+  </div>
+</section>
+
+<style>
+.categories {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.categories h2 {
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.category-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 5px;
+}
+
+.category-container button {
+  min-width: 105px;
+  padding: 15px 8px;
+  border: none;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.category-container button:active {
+  transform: scale(0.94);
+}
+</style>
+
+<script>
+function showCategory(category) {
+  alert("You selected: " + category);
+}
+</script>
 </body>
     </html>

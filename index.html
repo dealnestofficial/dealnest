@@ -1,304 +1,305 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>DealNest - Best Deals</title>
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
+    }
+
+    body {
       background: #f5f5f5;
       color: #222;
     }
 
+    /* HEADER */
     header {
       background: #111;
       color: white;
-      padding: 20px;
+      padding: 18px;
       text-align: center;
     }
 
     header h1 {
-      margin: 0;
       font-size: 30px;
     }
 
     header p {
-      margin: 8px 0 0;
+      margin-top: 5px;
       color: #ccc;
     }
 
-    .search {
-      padding: 20px;
+    /* SEARCH */
+    .search-box {
       text-align: center;
+      padding: 20px;
+      background: white;
     }
 
-    .search input {
-      width: 85%;
+    .search-box input {
+      width: 90%;
       max-width: 500px;
       padding: 13px;
       border: 1px solid #ccc;
       border-radius: 25px;
       font-size: 16px;
+      outline: none;
     }
 
-    .categories {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 10px 15px 20px;
-    }
-
-    .categories button {
-      border: none;
-      background: white;
-      padding: 12px 18px;
-      border-radius: 20px;
-      white-space: nowrap;
-      cursor: pointer;
-      box-shadow: 0 2px 8px #ddd;
-    }
-
-    .categories button:hover {
-      background: #111;
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 35px 15px;
+      background: linear-gradient(135deg, #ff7a00, #ffb000);
       color: white;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    /* PRODUCTS */
+    .shop-section {
+      padding: 30px 15px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .shop-section h2 {
+      text-align: center;
+      margin-bottom: 25px;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      padding: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
     }
 
-    .card {
+    .product-card {
       background: white;
-      border-radius: 12px;
-      padding: 12px;
-      box-shadow: 0 3px 10px #ddd;
-    }
-
-    .card .emoji {
-      font-size: 55px;
+      border-radius: 16px;
+      padding: 20px;
       text-align: center;
-      padding: 15px;
-      background: #f1f1f1;
-      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      position: relative;
     }
 
-    .card h3 {
-      margin: 12px 0 5px;
-      font-size: 17px;
-    }
-
-    .category {
+    .discount {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #e53935;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 20px;
       font-size: 13px;
-      color: #777;
-    }
-
-    .price {
-      font-size: 19px;
       font-weight: bold;
-      margin: 8px 0;
     }
 
-    .shop {
-      display: block;
-      text-align: center;
-      background: #ff4d00;
+    .product-image {
+      font-size: 80px;
+      margin: 20px 0;
+    }
+
+    .product-card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .product-card p {
+      color: #666;
+      margin: 6px 0;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #999 !important;
+    }
+
+    .new-price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #111 !important;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 25px;
+      background: #ff6b00;
       color: white;
       text-decoration: none;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 8px;
+      border-radius: 25px;
       font-weight: bold;
     }
 
+    .shop-btn:hover {
+      background: #e85d00;
+    }
+
+    /* FOOTER */
     footer {
+      margin-top: 30px;
       background: #111;
       color: white;
       text-align: center;
       padding: 20px;
-      margin-top: 25px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .hero h2 {
+        font-size: 23px;
+      }
     }
   </style>
 </head>
 
 <body>
-<section class="shop-section">
-  <h2>🔥 Trending Deals</h2>
 
-  <div class="product-card">
-    <h3>🎧 Wireless Headphones</h3>
-    <p>30% OFF — Limited Time Deal</p>
+  <!-- HEADER -->
+  <header>
+    <h1>🛍️ DealNest</h1>
+    <p>Discover Amazing Deals Every Day</p>
+  </header>
 
-    <a href="https://www.amazon.in/" target="_blank" class="shop-btn">
-      Shop Now 🛒
-    </a>
-  </div>
-</section>
-
-<style>
-  .shop-section {
-    text-align: center;
-    padding: 30px 15px;
-  }
-
-  .product-card {
-    max-width: 320px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    background: white;
-  }
-
-  .shop-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 25px;
-    background: #ff6b00;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: bold;
-  }
-</style>
-<header>
-  <h1>🛍️ DealNest</h1>
-  <p>Find Amazing Deals Every Day</p>
-</header>
-
-<div class="search">
-  <input type="text" id="searchBox" placeholder="Search products...">
-</div>
-
-<div class="categories">
-  <button onclick="filterProducts('All')">All</button>
-  <button onclick="filterProducts('Clothes')">👕 Clothes</button>
-  <button onclick="filterProducts('Skin Care')">🧴 Skin Care</button>
-  <button onclick="filterProducts('Electronics')">🎧 Electronics</button>
-  <button onclick="filterProducts('Shoes')">👟 Shoes</button>
-  <button onclick="filterProducts('Beauty')">💄 Beauty</button>
-  <button onclick="filterProducts('Home')">🏠 Home</button>
-  <button onclick="filterProducts('Accessories')">⌚ Accessories</button>
-</div>
-
-<div class="products">
-
-  <div class="card" data-category="Clothes">
-    <div class="emoji">👕</div>
-    <h3>Stylish T-Shirt</h3>
-    <div class="category">Clothes</div>
-    <div class="price">₹499</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔍 Search products..."
+      onkeyup="searchProducts()"
+    >
   </div>
 
-  <div class="card" data-category="Clothes">
-    <div class="emoji">👖</div>
-    <h3>Casual Jeans</h3>
-    <div class="category">Clothes</div>
-    <div class="price">₹899</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+  <!-- HERO -->
+  <section class="hero">
+    <h2>🔥 Today's Best Deals</h2>
+    <p>Save more. Shop smarter.</p>
+  </section>
 
-  <div class="card" data-category="Skin Care">
-    <div class="emoji">🧴</div>
-    <h3>Face Moisturizer</h3>
-    <div class="category">Skin Care</div>
-    <div class="price">₹299</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+  <!-- PRODUCTS -->
+  <section class="shop-section">
 
-  <div class="card" data-category="Skin Care">
-    <div class="emoji">🧼</div>
-    <h3>Face Wash</h3>
-    <div class="category">Skin Care</div>
-    <div class="price">₹249</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+    <h2>🛒 Trending Products</h2>
 
-  <div class="card" data-category="Electronics">
-    <div class="emoji">🎧</div>
-    <h3>Wireless Headphones</h3>
-    <div class="category">Electronics</div>
-    <div class="price">₹999</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+    <div class="products" id="productList">
 
-  <div class="card" data-category="Shoes">
-    <div class="emoji">👟</div>
-    <h3>Running Shoes</h3>
-    <div class="category">Shoes</div>
-    <div class="price">₹1,299</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+      <!-- PRODUCT 1 -->
+      <div class="product-card">
+        <div class="discount">30% OFF</div>
 
-  <div class="card" data-category="Beauty">
-    <div class="emoji">💄</div>
-    <h3>Beauty Essentials</h3>
-    <div class="category">Beauty</div>
-    <div class="price">₹599</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+        <div class="product-image">🎧</div>
 
-  <div class="card" data-category="Home">
-    <div class="emoji">🏠</div>
-    <h3>Home Essentials</h3>
-    <div class="category">Home</div>
-    <div class="price">₹699</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+        <h3>Wireless Headphones</h3>
 
-  <div class="card" data-category="Accessories">
-    <div class="emoji">⌚</div>
-    <h3>Smart Watch</h3>
-    <div class="category">Accessories</div>
-    <div class="price">₹1,499</div>
-    <a class="shop" href="#" target="_blank">Shop Now</a>
-  </div>
+        <p>Premium Wireless Headphones</p>
 
-</div>
+        <p class="old-price">₹1,999</p>
+        <p class="new-price">₹1,399</p>
 
-<footer>
-  <p>© 2026 DealNest | Best Deals in One Place</p>
-</footer>
+        <a
+          href="https://www.amazon.in/"
+          target="_blank"
+          class="shop-btn">
+          Shop Now 🛒
+        </a>
+      </div>
 
-<script>
+      <!-- PRODUCT 2 -->
+      <div class="product-card">
+        <div class="discount">25% OFF</div>
 
-  function filterProducts(category) {
-    let cards = document.querySelectorAll(".card");
+        <div class="product-image">⌚</div>
 
-    cards.forEach(function(card) {
-      if (category === "All" || card.dataset.category === category) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-  }
+        <h3>Smart Watch</h3>
 
-  document.getElementById("searchBox").addEventListener("input", function() {
+        <p>Stylish Smart Watch</p>
 
-    let input = this.value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
+        <p class="old-price">₹2,999</p>
+        <p class="new-price">₹2,249</p>
 
-    cards.forEach(function(card) {
+        <a
+          href="https://www.amazon.in/"
+          target="_blank"
+          class="shop-btn">
+          Shop Now 🛒
+        </a>
+      </div>
 
-      let name = card.innerText.toLowerCase();
+      <!-- PRODUCT 3 -->
+      <div class="product-card">
+        <div class="discount">20% OFF</div>
 
-      if (name.includes(input)) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+        <div class="product-image">🎮</div>
 
-    });
+        <h3>Gaming Controller</h3>
 
-  });
+        <p>Wireless Gaming Controller</p>
 
-</script>
+        <p class="old-price">₹1,499</p>
+        <p class="new-price">₹1,199</p>
+
+        <a
+          href="https://www.amazon.in/"
+          target="_blank"
+          class="shop-btn">
+          Shop Now 🛒
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 DealNest</p>
+    <p>Best Deals • Smart Shopping</p>
+  </footer>
+
+  <!-- SEARCH SCRIPT -->
+  <script>
+    function searchProducts() {
+
+      let input =
+        document.getElementById("searchInput").value.toLowerCase();
+
+      let cards =
+        document.querySelectorAll(".product-card");
+
+      cards.forEach(function(card) {
+
+        let name =
+          card.innerText.toLowerCase();
+
+        if (name.includes(input)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+
+      });
+    }
+  </script>
 
 </body>
-  </html>
+    </html>

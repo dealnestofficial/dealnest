@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>DealNest - Best Online Deals & Offers</title>
-
-<meta name="description" content="Discover the best online deals, discounts and shopping offers at DealNest.">
-  <meta name="google-site-verification" content="aBYtqeIt-oFbmktrB6DxVpyYVQ2Bc62IRi_cz8mSRBE" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DealNest - Best Deals</title>
+  <title>DealNest - Best Online Deals & Offers</title>
+
+  <meta name="description" content="Discover the best online deals, discounts and shopping offers at DealNest.">
+
+  <meta name="google-site-verification" content="aBYtqeIt-oFbmktrB6DxVpyYVQ2Bc62IRi_cz8mSRBE">
 
   <style>
     * {
@@ -23,7 +24,6 @@
       color: #222;
     }
 
-    /* HEADER */
     header {
       background: #111;
       color: white;
@@ -40,7 +40,6 @@
       color: #ccc;
     }
 
-    /* SEARCH */
     .search-box {
       text-align: center;
       padding: 20px;
@@ -57,7 +56,6 @@
       outline: none;
     }
 
-    /* HERO */
     .hero {
       text-align: center;
       padding: 35px 15px;
@@ -74,7 +72,6 @@
       font-size: 16px;
     }
 
-    /* CATEGORIES */
     .categories {
       padding: 25px 10px;
       background: white;
@@ -107,15 +104,10 @@
       transition: 0.2s;
     }
 
-    .category-container button:active {
-      transform: scale(0.94);
-    }
-
     .category-container button:hover {
       background: #fff3e8;
     }
 
-    /* PRODUCTS */
     .shop-section {
       padding: 30px 15px;
       max-width: 1100px;
@@ -195,7 +187,6 @@
       background: #e85d00;
     }
 
-    /* NO PRODUCTS */
     #noProducts {
       display: none;
       text-align: center;
@@ -204,7 +195,6 @@
       font-size: 18px;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 30px;
       background: #111;
@@ -213,9 +203,7 @@
       padding: 20px;
     }
 
-    /* MOBILE */
     @media (max-width: 600px) {
-
       header h1 {
         font-size: 25px;
       }
@@ -263,37 +251,34 @@
     <div class="category-container">
 
       <button onclick="filterCategory('all')">
-        🛒<br>
-        All
+        🛒<br>All
       </button>
 
       <button onclick="filterCategory('electronics')">
-        📱<br>
-        Electronics
+        📱<br>Electronics
       </button>
 
       <button onclick="filterCategory('headphones')">
-        🎧<br>
-        Headphones
+        🎧<br>Headphones
       </button>
 
       <button onclick="filterCategory('fashion')">
-        👕<br>
-        Fashion
+        👕<br>Fashion
       </button>
 
       <button onclick="filterCategory('home')">
-        🏠<br>
-        Home
+        🏠<br>Home
       </button>
 
       <button onclick="filterCategory('accessories')">
-        ⌚<br>
-        Accessories
+        ⌚<br>Accessories
+      </button>
+
+      <button onclick="filterCategory('skincare')">
+        🧴<br>Skin Care
       </button>
 
     </div>
-
   </section>
 
   <!-- PRODUCTS -->
@@ -303,75 +288,239 @@
 
     <div class="products" id="productList">
 
-      <!-- PRODUCT 1 -->
       <!-- HEADPHONES -->
-<div class="product-card" data-category="electronics">
+      <div class="product-card" data-category="electronics headphones">
 
-  <div class="discount">40% OFF</div>
+        <div class="discount">40% OFF</div>
+        <div class="product-image">🎧</div>
 
-  <div class="product-image">🎧</div>
+        <h3>Headphones</h3>
+        <p>Wireless Headphones</p>
 
-  <h3>Headphones</h3>
+        <p class="old-price">₹4,999</p>
+        <p class="new-price">₹2,999</p>
 
-  <p>Wireless Headphones</p>
-
-  <p class="old-price">₹4,999</p>
-  <p class="new-price">₹2,999</p>
-
-  <a
-    href="https://link.amazon/B0iNNEC5e"
-    target="_blank"
-    class="shop-btn">
-    Shop Now 🛒
-  </a>
-
-</div>
+        <a href="https://link.amazon/B0iNNEC5e"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
 
       </div>
 
-
-      <!-- PRODUCT 2 -->
+      <!-- SMART WATCH -->
       <div class="product-card" data-category="accessories">
 
         <div class="discount">25% OFF</div>
-
         <div class="product-image">⌚</div>
 
         <h3>Smart Watch</h3>
-
         <p>Stylish Smart Watch</p>
 
         <p class="old-price">₹2,999</p>
         <p class="new-price">₹2,249</p>
 
-        <a
-          href="https://amzn.in/d/02OtJR4z"
-          target="_blank"
-          class="shop-btn">
+        <a href="https://amzn.in/d/02OtJR4z"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+      <!-- GAMING CONTROLLER -->
+      <div class="product-card" data-category="electronics">
+
+        <div class="discount">20% OFF</div>
+        <div class="product-image">🎮</div>
+
+        <h3>Gaming Controller</h3>
+        <p>Wireless Gaming Controller</p>
+
+        <p class="old-price">₹1,499</p>
+        <p class="new-price">₹1,199</p>
+
+        <a href="https://amzn.in/d/00hFYXiv"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+      <!-- JOGGER -->
+      <div class="product-card" data-category="fashion">
+
+        <div class="discount">25% OFF</div>
+        <div class="product-image">👖</div>
+
+        <h3>Jogger</h3>
+        <p>Stylish & Comfortable Jogger</p>
+
+        <p class="old-price">₹1,599</p>
+        <p class="new-price">₹1,199</p>
+
+        <a href="https://link.amazon/B0eFP6O1Y"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
           Shop Now 🛒
         </a>
 
       </div>
 
 
-      <!-- PRODUCT 3 -->
-      <div class="product-card" data-category="electronics">
+      <!-- SKIN CARE PRODUCT 1 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">34% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 1</h3>
+        <p>Skin Care Product</p>
+
+        <p class="old-price">₹895</p>
+        <p class="new-price">₹591</p>
+
+        <a href="https://link.amazon/B02NxO9b7"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 2 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">10% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 2</h3>
+        <p>Skin Care Product</p>
+
+        <p class="old-price">₹350</p>
+        <p class="new-price">₹315</p>
+
+        <a href="https://link.amazon/B0cIBLw6B"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 3 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">50% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 3</h3>
+        <p>Skin Care Product</p>
+
+        <p class="old-price">₹998</p>
+        <p class="new-price">₹499</p>
+
+        <a href="https://link.amazon/B0gWFKhq4"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 4 -->
+      <div class="product-card" data-category="skincare">
 
         <div class="discount">20% OFF</div>
+        <div class="product-image">🧴</div>
 
-        <div class="product-image">🎮</div>
+        <h3>Skin Care Product 4</h3>
+        <p>Skin Care Product</p>
 
-        <h3>Gaming Controller</h3>
+        <p class="old-price">₹499</p>
+        <p class="new-price">₹399</p>
 
-        <p>Wireless Gaming Controller</p>
+        <a href="https://link.amazon/B0efYqPig"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 5 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">5% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 5</h3>
+        <p>Skin Care Product</p>
+
+        <p class="old-price">₹299</p>
+        <p class="new-price">₹283</p>
+
+        <a href="https://link.amazon/B0czikcHX"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 6 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">43% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 6</h3>
+        <p>Skin Care Product</p>
+
+        <p class="old-price">₹289</p>
+        <p class="new-price">₹166</p>
+
+        <a href="https://link.amazon/B03KEaPIp"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
+          Shop Now 🛒
+        </a>
+
+      </div>
+
+
+      <!-- SKIN CARE PRODUCT 7 -->
+      <div class="product-card" data-category="skincare">
+
+        <div class="discount">14% OFF</div>
+        <div class="product-image">🧴</div>
+
+        <h3>Skin Care Product 7</h3>
+        <p>Skin Care Product</p>
 
         <p class="old-price">₹1,499</p>
-        <p class="new-price">₹1,199</p>
+        <p class="new-price">₹1,295</p>
 
-        <a
-          href="https://amzn.in/d/00hFYXiv"
-          target="_blank"
-          class="shop-btn">
+        <a href="https://link.amazon/B0hpsYX1v"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="shop-btn">
           Shop Now 🛒
         </a>
 
@@ -382,28 +531,7 @@
     <div id="noProducts">
       😔 No products available in this category yet.
     </div>
-      <!-- PRODUCT 4 -->
-<div class="product-card" data-category="fashion">
 
-  <div class="discount">25% OFF</div>
-
-  <div class="product-image">👖</div>
-
-  <h3>Jogger</h3>
-
-  <p>Stylish & Comfortable Jogger</p>
-
-  <p class="old-price">₹1,599</p>
-  <p class="new-price">₹1,199</p>
-
-  <a
-    href="https://link.amazon/B0eFP6O1Y"
-    target="_blank"
-    class="shop-btn">
-    Shop Now 🛒
-  </a>
-
-</div>
   </section>
 
 
@@ -419,25 +547,22 @@
 
     let currentCategory = "all";
 
-
-    /* CATEGORY FILTER */
     function filterCategory(category) {
 
       currentCategory = category;
 
-      let cards =
-        document.querySelectorAll(".product-card");
+      let cards = document.querySelectorAll(".product-card");
 
       let visibleCount = 0;
 
       cards.forEach(function(card) {
 
-        let cardCategory =
-          card.getAttribute("data-category");
+        let cardCategories =
+          card.getAttribute("data-category").split(" ");
 
         if (
           category === "all" ||
-          cardCategory === category
+          cardCategories.includes(category)
         ) {
 
           card.style.display = "block";
@@ -452,25 +577,25 @@
       });
 
       if (category === "all") {
+
         document.getElementById("sectionTitle").innerText =
           "🛒 Trending Products";
+
       } else {
+
         document.getElementById("sectionTitle").innerText =
-          "🛍️ " + category.charAt(0).toUpperCase() + category.slice(1);
+          "🛍️ " +
+          category.charAt(0).toUpperCase() +
+          category.slice(1);
+
       }
 
-      if (visibleCount === 0) {
-        document.getElementById("noProducts").style.display =
-          "block";
-      } else {
-        document.getElementById("noProducts").style.display =
-          "none";
-      }
+      document.getElementById("noProducts").style.display =
+        visibleCount === 0 ? "block" : "none";
 
     }
 
 
-    /* SEARCH */
     function searchProducts() {
 
       let input =
@@ -488,12 +613,12 @@
         let name =
           card.innerText.toLowerCase();
 
-        let category =
-          card.getAttribute("data-category");
+        let categories =
+          card.getAttribute("data-category").split(" ");
 
         let categoryMatch =
           currentCategory === "all" ||
-          category === currentCategory;
+          categories.includes(currentCategory);
 
         let searchMatch =
           name.includes(input);
@@ -511,17 +636,8 @@
 
       });
 
-      if (visibleCount === 0) {
-
-        document.getElementById("noProducts").style.display =
-          "block";
-
-      } else {
-
-        document.getElementById("noProducts").style.display =
-          "none";
-
-      }
+      document.getElementById("noProducts").style.display =
+        visibleCount === 0 ? "block" : "none";
 
     }
 

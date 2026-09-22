@@ -1,762 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DealNest - Best Online Deals & Offers</title>
+<title>DealNest - Best Online Deals & Offers</title>
+<meta name="description" content="Discover the best online deals, discounts and shopping offers at DealNest.">
+<meta name="google-site-verification" content="aBYtqeIt-oFbmktrB6DxVpyYVQ2Bc62IRi_cz8mSRBE">
 
-  <meta name="description" content="Discover the best online deals, discounts and shopping offers at DealNest.">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4CM5MSK04"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-R4CM5MSK04');
+</script>
 
-  <meta name="google-site-verification" content="aBYtqeIt-oFbmktrB6DxVpyYVQ2Bc62IRi_cz8mSRBE">
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f6f8;
+  color:#171717;
+  line-height:1.5;
+}
 
-    body {
-      background: #f5f5f5;
-      color: #222;
-    }
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
-    header {
-      background: #111;
-      color: white;
-      padding: 18px;
-      text-align: center;
-    }
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#111;
+  color:#fff;
+  box-shadow:0 2px 12px rgba(0,0,0,.18);
+}
 
-    header h1 {
-      font-size: 30px;
-    }
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
 
-    header p {
-      margin-top: 5px;
-      color: #ccc;
-    }
+.logo{
+  font-size:26px;
+  font-weight:800;
+  white-space:nowrap;
+}
 
-    .search-box {
-      text-align: center;
-      padding: 20px;
-      background: white;
-    }
+.logo span{
+  color:#ffb000;
+}
 
-    .search-box input {
-      width: 90%;
-      max-width: 500px;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 25px;
-      font-size: 16px;
-      outline: none;
-    }
+.search-wrap{
+  flex:1;
+}
 
-    .hero {
-      text-align: center;
-      padding: 35px 15px;
-      background: linear-gradient(135deg, #ff7a00, #ffb000);
-      color: white;
-    }
+#searchInput{
+  width:100%;
+  padding:12px 17px;
+  border:0;
+  border-radius:25px;
+  font-size:15px;
+  outline:none;
+}
 
-    .hero h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+.hero{
+  background:linear-gradient(135deg,#171717,#343434);
+  color:#fff;
+  text-align:center;
+  padding:48px 18px;
+}
 
-    .hero p {
-      font-size: 16px;
-    }
+.hero h1{
+  font-size:clamp(30px,6vw,52px);
+  margin-bottom:10px;
+}
 
-    .categories {
-      padding: 25px 10px;
-      background: white;
-      text-align: center;
-    }
+.hero p{
+  color:#ddd;
+  max-width:680px;
+  margin:auto;
+  font-size:16px;
+}
 
-    .categories h2 {
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:28px 18px 45px;
+}
 
-    .category-container {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 5px;
-      justify-content: center;
-    }
+.section-title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:20px;
+}
 
-    .category-container button {
-      min-width: 105px;
-      padding: 15px 8px;
-      border: none;
-      border-radius: 15px;
-      background: white;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+  margin-bottom:28px;
+}
 
-    .category-container button:hover {
-      background: #fff3e8;
-    }
+.filter-btn{
+  border:1px solid #ddd;
+  background:#fff;
+  padding:9px 15px;
+  border-radius:22px;
+  cursor:pointer;
+  font-weight:600;
+}
 
-    .shop-section {
-      padding: 30px 15px;
-      max-width: 1100px;
-      margin: auto;
-    }
+.filter-btn:hover,
+.filter-btn.active{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
 
-    .shop-section h2 {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
+.card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 14px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+  transition:.2s;
+}
 
-    .product-card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-      position: relative;
-    }
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
 
-    .discount {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: #e53935;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-    }
+.image-box{
+  height:245px;
+  background:#f3f3f3;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
 
-    .product-image {
-      font-size: 80px;
-      margin: 20px 0;
-    }
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
-    .product-card h3 {
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
+.badge{
+  position:absolute;
+  top:11px;
+  left:11px;
+  background:#e53935;
+  color:#fff;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:800;
+  z-index:2;
+}
 
-    .product-card p {
-      color: #666;
-      margin: 6px 0;
-    }
+.card-body{
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
 
-    .old-price {
-      text-decoration: line-through;
-      color: #999 !important;
-    }
+.category{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  color:#777;
+  font-weight:700;
+  margin-bottom:5px;
+}
 
-    .new-price {
-      font-size: 24px;
-      font-weight: bold;
-      color: #111 !important;
-    }
+.card h3{
+  font-size:17px;
+  line-height:1.3;
+  margin-bottom:7px;
+}
 
-    .shop-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 12px 25px;
-      background: #ff6b00;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-    }
+.desc{
+  font-size:13px;
+  color:#666;
+  margin-bottom:11px;
+  min-height:38px;
+}
 
-    .shop-btn:hover {
-      background: #e85d00;
-    }
+.price-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:auto;
+}
 
-    #noProducts {
-      display: none;
-      text-align: center;
-      padding: 30px;
-      color: #666;
-      font-size: 18px;
-    }
+.price{
+  font-size:22px;
+  font-weight:800;
+}
 
-    footer {
-      margin-top: 30px;
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+.old-price{
+  text-decoration:line-through;
+  color:#999;
+  font-size:14px;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 25px;
-      }
+.discount{
+  color:#198754;
+  font-size:13px;
+  font-weight:800;
+}
 
-      .hero h2 {
-        font-size: 23px;
-      }
+.shop-btn{
+  display:block;
+  text-align:center;
+  background:#ffb000;
+  color:#111;
+  font-weight:800;
+  padding:11px;
+  border-radius:9px;
+  margin-top:13px;
+}
 
-      .category-container {
-        justify-content: flex-start;
-      }
-    }
-  </style>
+.shop-btn:hover{
+  background:#ffca3a;
+}
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4CM5MSK04"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+.empty{
+  text-align:center;
+  display:none;
+  padding:35px;
+  color:#777;
+  grid-column:1/-1;
+}
 
-    gtag('config', 'G-R4CM5MSK04');
-  </script>
+footer{
+  background:#111;
+  color:#ddd;
+  text-align:center;
+  padding:25px 18px;
+}
+
+footer strong{
+  color:#fff;
+}
+
+footer p{
+  font-size:13px;
+  margin-top:6px;
+}
+
+@media(max-width:1000px){
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    width:100%;
+    text-align:center;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .image-box{
+    height:210px;
+  }
+
+  .card-body{
+    padding:12px;
+  }
+
+  .card h3{
+    font-size:15px;
+  }
+
+  .desc{
+    font-size:12px;
+  }
+
+  .price{
+    font-size:19px;
+  }
+}
+
+@media(max-width:430px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .image-box{
+    height:175px;
+  }
+
+  .hero{
+    padding:35px 15px;
+  }
+
+  .container{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .filter-btn{
+    font-size:12px;
+    padding:8px 11px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>🛍️ DealNest</h1>
-    <p>Discover Amazing Deals Every Day</p>
-  </header>
+<header>
+  <div class="nav">
+    <div class="logo">Deal<span>Nest</span></div>
 
-  <!-- SEARCH -->
-  <div class="search-box">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="🔍 Search products..."
-      onkeyup="searchProducts()"
-    >
-  </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <h2>🔥 Today's Best Deals</h2>
-    <p>Save more. Shop smarter.</p>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section class="categories">
-
-    <h2>🛍️ Shop by Category</h2>
-
-    <div class="category-container">
-
-      <button onclick="filterCategory('all')">
-        🛒<br>All
-      </button>
-
-      <button onclick="filterCategory('electronics')">
-        📱<br>Electronics
-      </button>
-
-      <button onclick="filterCategory('headphones')">
-        🎧<br>Headphones
-      </button>
-
-      <button onclick="filterCategory('fashion')">
-        👕<br>Fashion
-      </button>
-
-      <button onclick="filterCategory('home')">
-        🏠<br>Home
-      </button>
-
-      <button onclick="filterCategory('accessories')">
-        ⌚<br>Accessories
-      </button>
-
-      <button onclick="filterCategory('skincare')">
-        🧴<br>Skin Care
-      </button>
-
+    <div class="search-wrap">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search products..."
+        aria-label="Search products"
+      >
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- PRODUCTS -->
-  <section class="shop-section">
+<section class="hero">
+  <h1>Best Deals, All in One Place</h1>
+  <p>
+    Discover hand-picked fashion and electronics deals at attractive prices.
+  </p>
+</section>
 
-    <h2 id="sectionTitle">🛒 Trending Products</h2>
+<main class="container">
 
-    <div class="products" id="productList">
+<h2 class="section-title">Today's Deals</h2>
 
-      <!-- EXISTING HEADPHONES -->
-      <div class="product-card" data-category="electronics headphones">
-        <div class="discount">40% OFF</div>
-        <div class="product-image">🎧</div>
-        <h3>Headphones</h3>
-        <p>Wireless Headphones</p>
-        <p class="old-price">₹4,999</p>
-        <p class="new-price">₹2,999</p>
+<div class="filters">
+  <button class="filter-btn active" data-category="all">All</button>
+  <button class="filter-btn" data-category="electronics">Electronics</button>
+  <button class="filter-btn" data-category="fashion">Fashion</button>
+</div>
 
-        <a href="https://link.amazon/B0iNNEC5e"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<div class="products" id="productGrid">
 
-      <!-- EXISTING SMART WATCH -->
-      <div class="product-card" data-category="accessories">
-        <div class="discount">25% OFF</div>
-        <div class="product-image">⌚</div>
-        <h3>Smart Watch</h3>
-        <p>Stylish Smart Watch</p>
-        <p class="old-price">₹2,999</p>
-        <p class="new-price">₹2,249</p>
+<!-- PRODUCT 01 -->
+<article class="card" data-category="electronics" data-name="wireless headphones">
+<div class="image-box">
+<span class="badge">70% OFF</span>
+<img src="images/product-01.jpg" alt="Wireless Headphones" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Wireless Headphones</h3>
+<p class="desc">Stylish wireless headphones for everyday listening.</p>
+<div class="price-row">
+<span class="price">₹1,499</span>
+<span class="old-price">₹4,999</span>
+<span class="discount">70% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B07JhO2jv" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://amzn.in/d/02OtJR4z"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 02 -->
+<article class="card" data-category="electronics" data-name="black wireless headphones">
+<div class="image-box">
+<span class="badge">67% OFF</span>
+<img src="images/product-02.jpg" alt="Black Wireless Headphones" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Black Wireless Headphones</h3>
+<p class="desc">Comfortable wireless headphones with a sleek design.</p>
+<div class="price-row">
+<span class="price">₹1,999</span>
+<span class="old-price">₹5,999</span>
+<span class="discount">67% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0dHTvgRT" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- EXISTING GAMING CONTROLLER -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">20% OFF</div>
-        <div class="product-image">🎮</div>
-        <h3>Gaming Controller</h3>
-        <p>Wireless Gaming Controller</p>
-        <p class="old-price">₹1,499</p>
-        <p class="new-price">₹1,199</p>
+<!-- PRODUCT 03 -->
+<article class="card" data-category="electronics" data-name="premium black headphones">
+<div class="image-box">
+<span class="badge">70% OFF</span>
+<img src="images/product-03.jpg" alt="Premium Black Headphones" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Premium Black Headphones</h3>
+<p class="desc">Modern over-ear headphones for daily entertainment.</p>
+<div class="price-row">
+<span class="price">₹1,799</span>
+<span class="old-price">₹5,999</span>
+<span class="discount">70% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0838Xbbp" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://amzn.in/d/00hFYXiv"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 04 -->
+<article class="card" data-category="electronics" data-name="brown smartwatch">
+<div class="image-box">
+<span class="badge">80% OFF</span>
+<img src="images/product-04.jpg" alt="Brown Smartwatch" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Brown Smartwatch</h3>
+<p class="desc">Stylish smartwatch with a round display.</p>
+<div class="price-row">
+<span class="price">₹1,399</span>
+<span class="old-price">₹6,999</span>
+<span class="discount">80% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B03FF7On9" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- EXISTING JOGGER -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">25% OFF</div>
-        <div class="product-image">👖</div>
-        <h3>Jogger</h3>
-        <p>Stylish & Comfortable Jogger</p>
-        <p class="old-price">₹1,599</p>
-        <p class="new-price">₹1,199</p>
+<!-- PRODUCT 05 -->
+<article class="card" data-category="electronics" data-name="gold smartwatch">
+<div class="image-box">
+<span class="badge">62% OFF</span>
+<img src="images/product-05.jpg" alt="Gold Smartwatch" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Gold Smartwatch</h3>
+<p class="desc">Elegant smartwatch with a stylish metallic look.</p>
+<div class="price-row">
+<span class="price">₹1,899</span>
+<span class="old-price">₹4,999</span>
+<span class="discount">62% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0fJWNIGt" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B0eFP6O1Y"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 06 -->
+<article class="card" data-category="electronics" data-name="black smartwatch">
+<div class="image-box">
+<span class="badge">67% OFF</span>
+<img src="images/product-06.jpg" alt="Black Smartwatch" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Electronics</div>
+<h3>Black Smartwatch</h3>
+<p class="desc">Modern black smartwatch for everyday use.</p>
+<div class="price-row">
+<span class="price">₹1,999</span>
+<span class="old-price">₹5,999</span>
+<span class="discount">67% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B06qFj7j7" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 1 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">70% OFF</div>
-        <div class="product-image">🎧</div>
-        <h3>Premium Wireless Headphones</h3>
-        <p>Wireless Audio Gadget</p>
-        <p class="old-price">₹4,999</p>
-        <p class="new-price">₹1,499</p>
+<!-- PRODUCT 07 -->
+<article class="card" data-category="fashion" data-name="blue overshirt">
+<div class="image-box">
+<span class="badge">67% OFF</span>
+<img src="images/product-07.jpg" alt="Blue Overshirt" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Casual Blue Overshirt</h3>
+<p class="desc">Relaxed casual overshirt for an everyday outfit.</p>
+<div class="price-row">
+<span class="price">₹656</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">67% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0i1x1bts" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B07JhO2jv"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 08 -->
+<article class="card" data-category="fashion" data-name="multi color jogger pants">
+<div class="image-box">
+<span class="badge">38% OFF</span>
+<img src="images/product-08.jpg" alt="Multi Color Jogger Pants" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Multi-Color Jogger Pants</h3>
+<p class="desc">Relaxed casual pants with a comfortable everyday fit.</p>
+<div class="price-row">
+<span class="price">₹999</span>
+<span class="old-price">₹1,599</span>
+<span class="discount">38% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B04tOgvLh" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 2 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">67% OFF</div>
-        <div class="product-image">🎧</div>
-        <h3>Bluetooth Wireless Earbuds</h3>
-        <p>Wireless Audio Gadget</p>
-        <p class="old-price">₹5,999</p>
-        <p class="new-price">₹1,999</p>
+<!-- PRODUCT 09 -->
+<article class="card" data-category="fashion" data-name="beige pink tshirt set">
+<div class="image-box">
+<span class="badge">70% OFF</span>
+<img src="images/product-09.jpg" alt="Beige Pink T Shirt Set" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Beige & Pink T-Shirt Set</h3>
+<p class="desc">Minimal casual T-shirts for everyday styling.</p>
+<div class="price-row">
+<span class="price">₹1,299</span>
+<span class="old-price">₹4,399</span>
+<span class="discount">70% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B06jOPGHk" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B0dHTvgRT"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 10 -->
+<article class="card" data-category="fashion" data-name="white wide leg jeans">
+<div class="image-box">
+<span class="badge">49% OFF</span>
+<img src="images/product-10.jpg" alt="White Wide Leg Jeans" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>White Wide-Leg Jeans</h3>
+<p class="desc">Clean white wide-leg denim with a relaxed fit.</p>
+<div class="price-row">
+<span class="price">₹664</span>
+<span class="old-price">₹1,299</span>
+<span class="discount">49% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B08HqUIjl" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 3 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">70% OFF</div>
-        <div class="product-image">📱</div>
-        <h3>Smart Electronic Device</h3>
-        <p>Modern Electronics Gadget</p>
-        <p class="old-price">₹5,999</p>
-        <p class="new-price">₹1,799</p>
+<!-- PRODUCT 11 -->
+<article class="card" data-category="fashion" data-name="green sweatshirt cream pants">
+<div class="image-box">
+<span class="badge">75% OFF</span>
+<img src="images/product-11.jpg" alt="Green Sweatshirt Cream Pants" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Green Sweatshirt & Cream Pants</h3>
+<p class="desc">Relaxed sweatshirt and cream pants casual outfit.</p>
+<div class="price-row">
+<span class="price">₹499</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">75% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B07qv0jqx" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B0838Xbbp"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 12 -->
+<article class="card" data-category="fashion" data-name="loose fit multicolor pants">
+<div class="image-box">
+<span class="badge">76% OFF</span>
+<img src="images/product-12.jpg" alt="Loose Fit Multi Color Pants" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Loose-Fit Multi-Color Pants</h3>
+<p class="desc">Relaxed-fit casual pants in versatile colors.</p>
+<div class="price-row">
+<span class="price">₹474</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">76% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B02GeYNnr" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 4 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">80% OFF</div>
-        <div class="product-image">🔊</div>
-        <h3>Portable Bluetooth Speaker</h3>
-        <p>Wireless Audio Gadget</p>
-        <p class="old-price">₹6,999</p>
-        <p class="new-price">₹1,399</p>
+<!-- PRODUCT 13 -->
+<article class="card" data-category="fashion" data-name="cream knit sweater">
+<div class="image-box">
+<span class="badge">67% OFF</span>
+<img src="images/product-13.jpg" alt="Cream Knit Sweater" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Cream Knit Sweater</h3>
+<p class="desc">Simple cream sweater for a clean casual look.</p>
+<div class="price-row">
+<span class="price">₹899</span>
+<span class="old-price">₹2,699</span>
+<span class="discount">67% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0c7OjaLg" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B03FF7On9"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 14 -->
+<article class="card" data-category="fashion" data-name="1984 raglan tshirt">
+<div class="image-box">
+<span class="badge">65% OFF</span>
+<img src="images/product-14.jpg" alt="1984 Raglan T Shirt" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>1984 Raglan T-Shirt</h3>
+<p class="desc">Statement raglan T-shirt with a relaxed silhouette.</p>
+<div class="price-row">
+<span class="price">₹453</span>
+<span class="old-price">₹1,299</span>
+<span class="discount">65% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0jl6SXec" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 5 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">62% OFF</div>
-        <div class="product-image">🔋</div>
-        <h3>Fast Charging Power Bank</h3>
-        <p>Portable Power Gadget</p>
-        <p class="old-price">₹4,999</p>
-        <p class="new-price">₹1,899</p>
+<!-- PRODUCT 15 -->
+<article class="card" data-category="fashion" data-name="black wide leg jeans">
+<div class="image-box">
+<span class="badge">57% OFF</span>
+<img src="images/product-15.jpg" alt="Black Wide Leg Jeans" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Black Wide-Leg Jeans</h3>
+<p class="desc">Relaxed black jeans for a modern casual look.</p>
+<div class="price-row">
+<span class="price">₹854</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">57% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B02JhWW4P" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B0fJWNIGt"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 16 -->
+<article class="card" data-category="fashion" data-name="black grey green brown pants">
+<div class="image-box">
+<span class="badge">64% OFF</span>
+<img src="images/product-16.jpg" alt="Loose Fit Pants" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Loose-Fit Casual Pants</h3>
+<p class="desc">Relaxed-fit pants suitable for everyday casual wear.</p>
+<div class="price-row">
+<span class="price">₹723</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">64% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0bcYvJ04" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW ELECTRONICS 6 -->
-      <div class="product-card" data-category="electronics">
-        <div class="discount">67% OFF</div>
-        <div class="product-image">🎮</div>
-        <h3>Wireless Smart Gadget</h3>
-        <p>Modern Electronic Gadget</p>
-        <p class="old-price">₹5,999</p>
-        <p class="new-price">₹1,999</p>
+<!-- PRODUCT 17 -->
+<article class="card" data-category="fashion" data-name="grey relaxed jeans">
+<div class="image-box">
+<span class="badge">75% OFF</span>
+<img src="images/product-17.jpg" alt="Grey Relaxed Jeans" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Grey Relaxed Jeans</h3>
+<p class="desc">Relaxed grey jeans with a comfortable everyday fit.</p>
+<div class="price-row">
+<span class="price">₹499</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">75% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0901OspN" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B06qFj7j7"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 18 -->
+<article class="card" data-category="fashion" data-name="dark green overshirt">
+<div class="image-box">
+<span class="badge">81% OFF</span>
+<img src="images/product-18.jpg" alt="Dark Green Overshirt" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Dark Green Overshirt</h3>
+<p class="desc">Versatile dark green overshirt for layered outfits.</p>
+<div class="price-row">
+<span class="price">₹369</span>
+<span class="old-price">₹1,899</span>
+<span class="discount">81% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B0fAhVQha" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW FASHION 1 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">67% OFF</div>
-        <div class="product-image">👕</div>
-        <h3>Men's Casual Shirt</h3>
-        <p>Stylish Casual Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹656</p>
+<!-- PRODUCT 19 -->
+<article class="card" data-category="fashion" data-name="basic tshirt set">
+<div class="image-box">
+<span class="badge">55% OFF</span>
+<img src="images/product-19.jpg" alt="Basic T Shirt Set" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>Basic T-Shirt Set</h3>
+<p class="desc">Simple basic T-shirts in versatile neutral colors.</p>
+<div class="price-row">
+<span class="price">₹899</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">55% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B06BBgVem" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-        <a href="https://link.amazon/B0i1x1bts"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<!-- PRODUCT 20 -->
+<article class="card" data-category="fashion" data-name="xenovaurban black white tshirt combo">
+<div class="image-box">
+<span class="badge">60% OFF</span>
+<img src="images/product-20.jpg" alt="XENOVAURBAN Black White T Shirt Combo" loading="lazy">
+</div>
+<div class="card-body">
+<div class="category">Fashion</div>
+<h3>XENOVAURBAN Black + White T-Shirt Combo</h3>
+<p class="desc">Combo of two solid-color T-shirts in black and white.</p>
+<div class="price-row">
+<span class="price">₹799</span>
+<span class="old-price">₹1,999</span>
+<span class="discount">60% OFF</span>
+</div>
+<a class="shop-btn" href="https://link.amazon/B05OgS3qI" target="_blank" rel="nofollow sponsored noopener">Shop Now</a>
+</div>
+</article>
 
-      <!-- NEW FASHION 2 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">38% OFF</div>
-        <div class="product-image">👚</div>
-        <h3>Women's Stylish Top</h3>
-        <p>Trendy Fashion Wear</p>
-        <p class="old-price">₹1,599</p>
-        <p class="new-price">₹999</p>
+<div class="empty" id="emptyState">
+No products found.
+</div>
 
-        <a href="https://link.amazon/B04tOgvLh"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+</div>
+</main>
 
-      <!-- NEW FASHION 3 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">70% OFF</div>
-        <div class="product-image">👕</div>
-        <h3>Men's Regular Fit T-Shirt</h3>
-        <p>Comfortable Daily Wear</p>
-        <p class="old-price">₹4,399</p>
-        <p class="new-price">₹1,299</p>
+<footer>
+<strong>DealNest</strong>
+<p>
+Deals and offers collected in one place. Prices and availability may change on the retailer's website.
+</p>
+</footer>
 
-        <a href="https://link.amazon/B06jOPGHk"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+<script>
 
-      <!-- NEW FASHION 4 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">49% OFF</div>
-        <div class="product-image">👗</div>
-        <h3>Women's Casual Dress</h3>
-        <p>Trendy Casual Fashion</p>
-        <p class="old-price">₹1,299</p>
-        <p class="new-price">₹664</p>
+const searchInput = document.getElementById("searchInput");
+const buttons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+const emptyState = document.getElementById("emptyState");
 
-        <a href="https://link.amazon/B08HqUIjl"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+let activeCategory = "all";
 
-      <!-- NEW FASHION 5 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">75% OFF</div>
-        <div class="product-image">🧥</div>
-        <h3>Men's Stylish Hoodie</h3>
-        <p>Comfortable Fashion Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹499</p>
+function filterProducts(){
 
-        <a href="https://link.amazon/B07qv0jqx"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+  const query = searchInput.value.trim().toLowerCase();
 
-      <!-- NEW FASHION 6 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">76% OFF</div>
-        <div class="product-image">👗</div>
-        <h3>Women's Fashion Kurti</h3>
-        <p>Stylish Traditional Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹474</p>
+  let visible = 0;
 
-        <a href="https://link.amazon/B02GeYNnr"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
+  cards.forEach(card => {
 
-      <!-- NEW FASHION 7 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">67% OFF</div>
-        <div class="product-image">👖</div>
-        <h3>Men's Casual Jeans</h3>
-        <p>Stylish Casual Bottom Wear</p>
-        <p class="old-price">₹2,699</p>
-        <p class="new-price">₹899</p>
-
-        <a href="https://link.amazon/B0c7OjaLg"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 8 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">65% OFF</div>
-        <div class="product-image">👚</div>
-        <h3>Women's Trendy T-Shirt</h3>
-        <p>Comfortable Fashion Wear</p>
-        <p class="old-price">₹1,299</p>
-        <p class="new-price">₹453</p>
-
-        <a href="https://link.amazon/B0jl6SXec"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 9 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">57% OFF</div>
-        <div class="product-image">👔</div>
-        <h3>Men's Printed Shirt</h3>
-        <p>Trendy Printed Casual Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹854</p>
-
-        <a href="https://link.amazon/B02JhWW4P"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 10 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">64% OFF</div>
-        <div class="product-image">👖</div>
-        <h3>Women's Casual Pants</h3>
-        <p>Stylish Casual Bottom Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹723</p>
-
-        <a href="https://link.amazon/B0bcYvJ04"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 11 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">75% OFF</div>
-        <div class="product-image">👕</div>
-        <h3>Men's Cotton T-Shirt</h3>
-        <p>Soft Cotton Daily Wear</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹499</p>
-
-        <a href="https://link.amazon/B0901OspN"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 12 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">81% OFF</div>
-        <div class="product-image">👗</div>
-        <h3>Women's Stylish Dress</h3>
-        <p>Modern Fashion Wear</p>
-        <p class="old-price">₹1,899</p>
-        <p class="new-price">₹369</p>
-
-        <a href="https://link.amazon/B0fAhVQha"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 13 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">55% OFF</div>
-        <div class="product-image">👕</div>
-        <h3>Men's Casual Wear Set</h3>
-        <p>Stylish Everyday Fashion</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹899</p>
-
-        <a href="https://link.amazon/B06BBgVem"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- NEW FASHION 14 -->
-      <div class="product-card" data-category="fashion">
-        <div class="discount">60% OFF</div>
-        <div class="product-image">👚</div>
-        <h3>Women's Fashion Wear</h3>
-        <p>Trendy Everyday Fashion</p>
-        <p class="old-price">₹1,999</p>
-        <p class="new-price">₹799</p>
-
-        <a href="https://link.amazon/B05OgS3qI"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- SKIN CARE PRODUCT 1 -->
-      <div class="product-card" data-category="skincare">
-        <div class="discount">34% OFF</div>
-        <div class="product-image">🧴</div>
-        <h3>Skin Care Product 1</h3>
-        <p>Skin Care Product</p>
-        <p class="old-price">₹895</p>
-        <p class="new-price">₹591</p>
-
-        <a href="https://link.amazon/B02NxO9b7"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- SKIN CARE PRODUCT 2 -->
-      <div class="product-card" data-category="skincare">
-        <div class="discount">10% OFF</div>
-        <div class="product-image">🧴</div>
-        <h3>Skin Care Product 2</h3>
-        <p>Skin Care Product</p>
-        <p class="old-price">₹350</p>
-        <p class="new-price">₹315</p>
-
-        <a href="https://link.amazon/B0cIBLw6B"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- SKIN CARE PRODUCT 3 -->
-      <div class="product-card" data-category="skincare">
-        <div class="discount">50% OFF</div>
-        <div class="product-image">🧴</div>
-        <h3>Skin Care Product 3</h3>
-        <p>Skin Care Product</p>
-        <p class="old-price">₹998</p>
-        <p class="new-price">₹499</p>
-
-        <a href="https://link.amazon/B0gWFKhq4"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="shop-btn">
-          Shop Now 🛒
-        </a>
-      </div>
-
-      <!-- SKIN CARE PRODUCT 4 -->
-      <div class="product-card" data-category="skincare">
-        <div class="discount">20% OFF</div>
-        <div class="
+    const category = card.d
